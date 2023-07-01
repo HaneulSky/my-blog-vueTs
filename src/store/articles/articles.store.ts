@@ -7,47 +7,47 @@ import type {IArticle} from "@/shared/models/article.model";
 import type {ResponseApi} from "../store.model";
 
 const articlesModule: ArticlesModule = {
-    state: () => ({
-        allArticles: [],
-        isLoading: false,
-    }),
+  state: () => ({
+    allArticles: [] as IArticle[],
+    isLoading: false,
+  }),
 
-    getters: {},
+  getters: {},
 
-    mutations: {
-        setArticles(state, pokemon) {
-            state.allArticles = pokemon;
-        },
-
-        setLoading(state, bool) {
-            state.isLoading = bool;
-        },
+  mutations: {
+    setArticles(state, article) {
+      state.allArticles = article;
     },
 
-    actions: {
-        async fetchArticles() {
-            try {
-                const response = await axios.get(BASE_URL + "/articles");
-
-                const data = await response.data;
-
-                return data;
-            } catch (error) {
-                throw error;
-            }
-        },
-        async getAllArticles({dispatch, commit}, params) {
-            commit("setLoading", true);
-            commit("setArticles", []);
-
-            dispatch("fetchArticles", params).then((res: ResponseApi<IArticle>) => {
-                commit("setArticles", res.results);
-                commit("setLoading", false);
-            });
-        },
+    setLoading(state, bool) {
+      state.isLoading = bool;
     },
+  },
 
-    namespaced: true,
+  actions: {
+    async fetchArticles() {
+      try {
+        const response = await axios.get(BASE_URL + "/article");
+
+        const data = await response.data;
+
+        return data;
+      } catch (error) {
+        throw error;
+      }
+    },
+    async getAllArticles({dispatch, commit}, params) {
+      commit("setLoading", true);
+      commit("setArticles", []);
+
+      dispatch("fetchArticles", params).then((res: ResponseApi<IArticle>) => {
+        commit("setArticles", res.results);
+        commit("setLoading", false);
+      });
+    },
+  },
+
+  namespaced: true,
 };
 
 export default articlesModule;

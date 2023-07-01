@@ -1,3 +1,3 @@
 export enum ModulesName {
-    RECIPES = "recipes",
+  ARTICLES = "articles",
 }

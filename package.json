@@ -5,7 +5,8 @@
     "scripts": {
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
-        "test:unit": "vue-cli-service test:unit"
+        "test:unit": "vue-cli-service test:unit",
+        "lint": "npx prettier --write ."
     },
     "dependencies": {
         "axios": "^1.4.0",
@@ -20,7 +21,6 @@
         "@typescript-eslint/eslint-plugin": "^5.4.0",
         "@typescript-eslint/parser": "^5.4.0",
         "@vue/cli-plugin-babel": "~5.0.0",
-        "@vue/cli-plugin-eslint": "~5.0.0",
         "@vue/cli-plugin-pwa": "~5.0.0",
         "@vue/cli-plugin-router": "~5.0.0",
         "@vue/cli-plugin-typescript": "~5.0.0",
