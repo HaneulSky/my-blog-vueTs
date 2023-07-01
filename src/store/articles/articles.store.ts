@@ -27,7 +27,7 @@ const articlesModule: ArticlesModule = {
     actions: {
         async fetchArticles() {
             try {
-                const response = await axios.get(BASE_URL);
+                const response = await axios.get(BASE_URL + "/articles");
 
                 const data = await response.data;
 
