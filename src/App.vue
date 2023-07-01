@@ -4,16 +4,7 @@
         <router-link to="/about">About</router-link>
     </nav>
     <router-view />
-    <input v-model="title" name="field" />
 </template>
-
-<script lang="ts">
-export default ({
-  data: () => ({
-    title: ''
-  })
-})
-</script>
 
 <style lang="scss">
 #app {

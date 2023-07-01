@@ -1,10 +1,16 @@
 export default {
-  name: 'pokemon',
+    props: {
+        pokemonName: {
+            type: String,
+            default: "",
+        },
+    },
+    name: "pokemon-card",
 
-  data: () => ({
-    img: null,
-    pokemonName: ''
-  }),
+    data: () => ({
+        img: null,
+        pokemonName: "",
+    }),
 
-  methods: {}
-}
+    methods: {},
+};

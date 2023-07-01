@@ -1,31 +1,30 @@
 import type {Store as VuexStore, DispatchOptions, CommitOptions, GetterTree, ActionTree, MutationTree} from "vuex";
 
-import type {IPokemonData} from "@/shared/models/pokemon-data.model";
+import type {IArticle} from "./../../shared/models/article.model";
 import type {Namespaced, ResponseApi} from "../store.model";
 import type {ModulesName} from "@/constants/modules-name";
 import type {ISearchParams} from "@/shared/models/search-params.model";
 
 interface Mutations {
-    setPokemons(state: PokemonsState, recipes: []): void;
-    changeCurrentPage(state: PokemonsState, page: number): void;
-    setLoading(state: PokemonsState, bool: boolean): void;
+    setArticles(state: ArticlesState, articles: []): void;
+    setLoading(state: ArticlesState, bool: boolean): void;
 }
 
 interface Actions {
-    fetchPokemons(context: AugmentedActionContext, params: ISearchParams): Promise<ResponseApi<IPokemonData>>;
+    fetchArticles(context: AugmentedActionContext, params: ISearchParams): Promise<ResponseApi<IArticle>>;
+    getAllArticles(context: AugmentedActionContext, params: ISearchParams): void;
 }
 
 interface Getters {}
 
 interface AugmentedActionContext {
     commit<K extends keyof Mutations>(key: K, payload: Parameters<Mutations[K]>[1]): ReturnType<Mutations[K]>;
-    state: PokemonsState;
+    state: ArticlesState;
     dispatch<K extends keyof Actions>(key: K, payload: Parameters<Actions[K]>[1], options?: DispatchOptions): ReturnType<Actions[K]>;
 }
 
-export interface PokemonsState {
-    allPokemons: [];
-    currentPage: number;
+export interface ArticlesState {
+    allArticles: [];
     isLoading: boolean;
 }
 
@@ -43,10 +42,10 @@ export type Store<S> = Omit<VuexStore<S>, "getters" | "commit" | "dispatch"> & {
     dispatch<K extends keyof NamespacedActions>(key: K, payload: Parameters<NamespacedActions[K]>[1], options?: DispatchOptions): ReturnType<NamespacedActions[K]>;
 };
 
-export interface PokemonsModule {
-    state: () => PokemonsState;
-    getters: GetterTree<PokemonsState, PokemonsState> & Getters;
-    mutations: MutationTree<PokemonsState> & Mutations;
-    actions: ActionTree<PokemonsState, PokemonsState> & Actions;
+export interface ArticlesModule {
+    state: () => ArticlesState;
+    getters: GetterTree<ArticlesState, ArticlesState> & Getters;
+    mutations: MutationTree<ArticlesState> & Mutations;
+    actions: ActionTree<ArticlesState, ArticlesState> & Actions;
     namespaced: boolean;
 }
